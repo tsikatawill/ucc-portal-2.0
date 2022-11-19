@@ -14,7 +14,7 @@ export const Navbar = () => {
 
   return (
     <Wrapper>
-      <Container size="fluid">
+      <Container>
         <Block dFlex align="center" justify="between">
           <StyledLogo href={"/"}>
             <Image
