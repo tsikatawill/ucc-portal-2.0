@@ -30,5 +30,10 @@ export const Text = styled("p", {
         fontWeight: "900",
       },
     },
+    color: {
+      blanc: {
+        color: "White",
+      },
+    },
   },
 });
