@@ -3,6 +3,7 @@ import { styled } from "../stitches.config";
 export const Container = styled("div", {
   padding: 20,
   maxWidth: 1280,
+  margin: "auto",
 
   variants: {
     size: {
