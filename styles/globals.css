@@ -22,3 +22,33 @@ a {
   transition: all 0.25s ease-in-out;
   /* color: #06b800; */
 }
+
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hidden {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@keyframes upDown {
+  from {
+    transform: translateY(80%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes leftRight {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(10px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
