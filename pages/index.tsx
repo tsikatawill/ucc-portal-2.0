@@ -4,7 +4,6 @@ import { useFirestore } from "../hooks";
 
 export default function Home() {
   const { newsItems, loadingNewsItems } = useFirestore();
-  console.log(loadingNewsItems ? "loading" : newsItems);
 
   return (
     <Layout>

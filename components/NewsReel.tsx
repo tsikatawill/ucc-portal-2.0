@@ -4,7 +4,6 @@ import { NewsReelItemI } from "../types";
 import { Block } from "./Block";
 import { Button, Container, Text } from "../components";
 import { FaNewspaper } from "react-icons/fa";
-import { useFirestore } from "../hooks";
 import { NewsReelItems } from "../utils/data";
 
 interface Props {
