@@ -18,10 +18,13 @@ export const { styled, getCssText, keyframes, css, createTheme } =
       },
       colors: {
         primaryBg: "#eee",
+        neutral: "black",
         offprimaryBg: "#ccc",
         primaryNavBg: "white",
         primaryText: "#000",
+        reversePrimaryText: "#e3e3e4",
         success: "#06b800",
+        transparentPrimary: "rgba(255,255,255,0.5)",
       },
       fontSizes: {
         sm: "0.8rem",
@@ -62,9 +65,12 @@ export const { styled, getCssText, keyframes, css, createTheme } =
 
 export const darkTheme = createTheme({
   colors: {
-    primaryBg: "#00051b",
-    offprimaryBg: "#0b1b63",
-    primaryNavBg: "black",
+    primaryBg: "#001118",
+    offprimaryBg: "#003c53",
+    primaryNavBg: "#000f13",
     primaryText: "#e3e3e4",
+    reversePrimaryText: "#000",
+    neutral: "#eee",
+    transparentPrimary: "rgba(0,0,0,0.15)",
   },
 });

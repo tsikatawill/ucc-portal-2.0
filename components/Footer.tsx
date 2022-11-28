@@ -27,6 +27,7 @@ export const Footer = () => {
 const Wrapper = styled("footer", {
   background: "$primaryNavBg",
   marginTop: "auto",
+  boxShadow: "-5px -5px 10px rgba(0,0,0,0.15)",
 });
 
 const StyledLink = styled(Link, {

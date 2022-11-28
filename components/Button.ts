@@ -5,9 +5,9 @@ export const Button = styled("button", {
   paddingY: 5,
   cursor: "pointer",
   outline: "none",
-  border: "none",
   borderRadius: 5,
   background: "$success",
+  border: "1px solid transparent",
   color: "white",
 
   variants: {
@@ -17,6 +17,12 @@ export const Button = styled("button", {
         color: "black",
       },
     },
+    neutral: {
+      true: {
+        background: "$neutral",
+        color: "$reversePrimaryText",
+      },
+    },
     circle: {
       true: {
         borderRadius: "50%",
@@ -24,6 +30,26 @@ export const Button = styled("button", {
         height: 30,
         display: "grid",
         placeContent: "center",
+      },
+    },
+    full: {
+      true: {
+        width: "100%",
+      },
+    },
+    size: {
+      md: {
+        padding: "$2",
+      },
+      lg: {
+        padding: "$3",
+      },
+    },
+    bordered: {
+      true: {
+        background: "none",
+        border: "1px solid $success",
+        color: "$primaryText",
       },
     },
   },
