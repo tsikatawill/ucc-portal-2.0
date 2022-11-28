@@ -4,24 +4,32 @@ import { NewsReelItemI } from "../types";
 import { Block } from "./Block";
 import { Button, Container, Text } from "../components";
 import { FaNewspaper } from "react-icons/fa";
+import { useFirestore } from "../hooks";
+import { NewsReelItems } from "../utils/data";
 
 interface Props {
   newsItems: NewsReelItemI[];
 }
 
 export const NewsReel = ({ newsItems = [] }: Props) => {
-  const [selected, setSelected] = useState<NewsReelItemI>(newsItems[0]);
+  const [selected, setSelected] = useState<NewsReelItemI>(() => {
+    if (newsItems.length === 0) {
+      return NewsReelItems[0];
+    }
+    return newsItems[0];
+  });
 
   useEffect(() => {
     const skip = () => {
-      console.log("Hello");
-      setSelected((prev) => {
-        if (newsItems.indexOf(prev) === newsItems.length - 1) {
-          return newsItems[0];
-        } else {
-          return newsItems[newsItems.indexOf(prev) + 1];
-        }
-      });
+      if (newsItems.length > 1) {
+        setSelected((prev) => {
+          if (newsItems.indexOf(prev) === newsItems.length - 1) {
+            return newsItems[0];
+          } else {
+            return newsItems[newsItems.indexOf(prev) + 1];
+          }
+        });
+      }
     };
 
     const interval = setInterval(skip, 5000);
@@ -30,49 +38,61 @@ export const NewsReel = ({ newsItems = [] }: Props) => {
   }, [newsItems]);
 
   return (
-    <Wrapper
-      css={{
-        background: `linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5),rgba(0,0,0,0.5)),  url(${selected.image}) no-repeat center center/cover`,
-      }}
-    >
-      <Container css={{ height: "100%" }}>
-        <Block
-          dFlex
-          direction="column"
-          justify="between"
-          css={{ height: "100%" }}
-        >
-          <NewsText>
-            <Text color="blanc" size={3}>
-              {selected.title}
-            </Text>
-            <Text color="blanc">{selected.summary}</Text>
-            <Button css={{ marginTop: "$2" }}>
-              <Block dFlex align="center" gap="1">
-                Read more <FaNewspaper />
-              </Block>
-            </Button>
-          </NewsText>
+    <>
+      <Wrapper
+        css={{
+          background: `linear-gradient(to right, 
+            rgba(0,0,0,95),
+            rgba(0,0,0,0.6),
+            rgba(0,0,0,0.1)),
+            url(${
+              selected.image || "/images/LT.jpg"
+            }) no-repeat center center/cover`,
+        }}
+      >
+        <Container css={{ height: "100%" }}>
+          <Block
+            dFlex
+            direction="column"
+            justify="between"
+            css={{ height: "100%" }}
+          >
+            <NewsText>
+              <Text color="blanc" size={3}>
+                {selected.title}
+              </Text>
+              <Text color="blanc" className="truncate-3">
+                {selected.summary}
+              </Text>
+              <Button css={{ marginTop: "$2" }}>
+                <Block dFlex align="center" gap="1">
+                  Read more <FaNewspaper />
+                </Block>
+              </Button>
+            </NewsText>
 
-          <ScrollContainer className="scrollbar-hidden">
-            <Block dFlex gap="2">
-              {newsItems.map((item, idx) => (
-                <NewsItemCard
-                  css={{
-                    background: `linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url(${item.image}) no-repeat center center/cover`,
-                  }}
-                  onClick={() => setSelected(item)}
-                  key={idx}
-                  selected={item.title === selected.title}
-                >
-                  <NewsItemInner>{item.title}</NewsItemInner>
-                </NewsItemCard>
-              ))}
-            </Block>
-          </ScrollContainer>
-        </Block>
-      </Container>
-    </Wrapper>
+            <ScrollContainer className="scrollbar-hidden">
+              <Block dFlex gap="2">
+                {newsItems.map((item, idx) => (
+                  <NewsItemCard
+                    css={{
+                      background: `linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url(${item.image}) no-repeat center center/cover`,
+                    }}
+                    onClick={() => setSelected(item)}
+                    key={idx}
+                    selected={item.title === selected.title}
+                  >
+                    <NewsItemInner className="truncate-3">
+                      {item.title}
+                    </NewsItemInner>
+                  </NewsItemCard>
+                ))}
+              </Block>
+            </ScrollContainer>
+          </Block>
+        </Container>
+      </Wrapper>
+    </>
   );
 };
 

@@ -1,21 +1,23 @@
 import Image from "next/image";
 import Link from "next/link";
 import React, { useContext } from "react";
-import { Container, Text, Button } from "../components";
+import { Container, Text, Button, UserButton } from "../components";
 import { styled } from "../stitches.config";
 import { Block } from "./Block";
 import { FaSignInAlt, FaSun, FaMoon } from "react-icons/fa";
 import { useRouter } from "next/router";
 import { ThemeContext } from "../providers/ThemeProvider";
+import { useUser } from "../hooks";
 
 export const Navbar = () => {
-  const router = useRouter();
   const { setTheme, theme } = useContext(ThemeContext);
+  const router = useRouter();
+  const { user } = useUser();
 
   return (
     <Wrapper>
       <Container>
-        <Block dFlex align="center" justify="between">
+        <Block dFlex align="center" justify="between" gap="2">
           <StyledLogo href={"/"}>
             <Image
               src="/images/ucc-logo.gif"
@@ -29,7 +31,18 @@ export const Navbar = () => {
             </div>
           </StyledLogo>
 
-          <Block dFlex gap="2">
+          <Block dFlex gap="2" align="center">
+            {user ? (
+              <UserButton user={user} />
+            ) : (
+              <Button
+                css={{ display: "flex", gap: "$1", alignItems: "center" }}
+                onClick={() => router.push("/sign-in")}
+              >
+                Login <FaSignInAlt />
+              </Button>
+            )}
+
             <Button
               blanc
               circle
@@ -41,13 +54,6 @@ export const Navbar = () => {
             >
               {theme === "dark" && <FaSun />}
               {theme === "light" && <FaMoon />}
-            </Button>
-
-            <Button
-              css={{ display: "flex", gap: "$1", alignItems: "center" }}
-              onClick={() => router.push("/login")}
-            >
-              Login <FaSignInAlt />
             </Button>
           </Block>
         </Block>

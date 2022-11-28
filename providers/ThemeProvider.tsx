@@ -4,10 +4,14 @@ import React, {
   useState,
   Dispatch,
   SetStateAction,
+  useContext,
 } from "react";
 
 export const ThemeContext = createContext<any>(null);
 
+export const useTheme = () => {
+  return useContext(ThemeContext);
+};
 interface themeContextProviderI {
   children: React.ReactNode;
 }

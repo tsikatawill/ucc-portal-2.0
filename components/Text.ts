@@ -34,6 +34,18 @@ export const Text = styled("p", {
       blanc: {
         color: "White",
       },
+      danger: {
+        color: "tomato",
+      },
+      success: {
+        color: "red",
+      },
+      warning: {
+        color: "orange",
+      },
+      info: {
+        color: "dodgerblue",
+      },
     },
   },
 });
