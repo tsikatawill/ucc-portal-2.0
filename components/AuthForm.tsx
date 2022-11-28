@@ -21,8 +21,8 @@ export const AuthForm = ({
         <Image
           src="/images/ucc-logo.gif"
           alt="ucc-logo.gif"
-          height="70"
-          width="70"
+          height="60"
+          width="60"
         />
         <Text size="2" css={{ textTransform: "capitalize" }}>
           {title}
@@ -36,15 +36,21 @@ export const AuthForm = ({
 
 const Wrapper = styled("form", {
   border: "1px solid $offprimaryBg",
-  maxWidth: 300,
+  width: 300,
   minHeight: 300,
   borderRadius: 5,
   margin: "auto",
   padding: "$4",
   background: "$transparentPrimary",
+
+  "@sm": {
+    width: 350,
+  },
 });
 
 const FormHeader = styled("legend", {
   textAlign: "center",
+  margin: "auto",
   marginBottom: "$4",
+  maxWidth: 250,
 });

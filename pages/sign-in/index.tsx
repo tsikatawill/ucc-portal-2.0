@@ -14,13 +14,9 @@ import {
 import { FaLock, FaRegEnvelope } from "react-icons/fa";
 import { styled } from "../../stitches.config";
 import { useRouter } from "next/router";
-import {
-  GoogleAuthProvider,
-  signInWithEmailAndPassword,
-  signInWithPopup,
-} from "firebase/auth";
+import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { auth, googleAuth } from "../../firebase";
-import { useUser } from "../../hooks";
+import { useUser, useFirebaseUsers } from "../../hooks";
 
 const SignIn = () => {
   const [formErrors, setFormErrors] = React.useState({
@@ -33,6 +29,7 @@ const SignIn = () => {
   });
   const { updateUser, user } = useUser();
   const router = useRouter();
+  const { addUser } = useFirebaseUsers();
 
   useEffect(() => {
     if (user !== null) {
@@ -46,6 +43,11 @@ const SignIn = () => {
       .then((response) => {
         if (response.user.email?.endsWith("@stu.ucc.edu.gh")) {
           updateUser(response.user);
+          addUser({
+            displayName: response.user.displayName as string,
+            email: response.user.email,
+            uid: response.user.uid,
+          });
           router.push("/dashboard");
           setFormFields({ email: "", password: "" });
         } else {
@@ -75,6 +77,11 @@ const SignIn = () => {
       .then((response) => {
         if (response.user.email?.endsWith("@stu.ucc.edu.gh")) {
           updateUser(response.user);
+          addUser({
+            displayName: response.user.displayName as string,
+            email: response.user.email,
+            uid: response.user.uid,
+          });
           router.push("/dashboard");
         } else {
           setFormErrors({

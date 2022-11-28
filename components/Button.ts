@@ -17,6 +17,12 @@ export const Button = styled("button", {
         color: "black",
       },
     },
+    neutral: {
+      true: {
+        background: "$neutral",
+        color: "$reversePrimaryText",
+      },
+    },
     circle: {
       true: {
         borderRadius: "50%",

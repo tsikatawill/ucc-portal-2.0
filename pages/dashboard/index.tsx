@@ -7,15 +7,8 @@ const Dashboard = () => {
   const router = useRouter();
   const { user } = useUser();
 
-  useEffect(() => {
-    if (user === null) {
-      router.push("/sign-in");
-      console.log({ user });
-    }
-  }, [user, router]);
-
   return (
-    <Layout>
+    <Layout protectedRoute>
       <div>
         <Container>Dashboard</Container>
       </div>

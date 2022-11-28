@@ -17,17 +17,28 @@ export const Navbar = () => {
   return (
     <Wrapper>
       <Container>
-        <Block dFlex align="center" justify="between" gap="2">
+        <Block
+          dFlex
+          align="center"
+          css={{ height: "fit-content" }}
+          justify="between"
+          gap="2"
+        >
           <StyledLogo href={"/"}>
-            <Image
+            <StyledImg
               src="/images/ucc-logo.gif"
               alt="ucc-logo"
-              width="50"
-              height="50"
+              width="40"
+              height="40"
             />
             <div>
-              <Text size={3}>UCC</Text>
-              <Text size={0}>University of Cape Coast</Text>
+              <Text size={2}>UCC</Text>
+              <Text
+                size={0}
+                css={{ display: "none", "@sm": { display: "block" } }}
+              >
+                University of Cape Coast
+              </Text>
             </div>
           </StyledLogo>
 
@@ -62,6 +73,11 @@ export const Navbar = () => {
   );
 };
 
+const Wrapper = styled("nav", {
+  background: "$primaryNavBg",
+  boxShadow: "5px 5px 10px rgba(0,0,0,0.15)",
+});
+
 const StyledLogo = styled(Link, {
   display: "flex",
   alignItems: "flex-end",
@@ -70,6 +86,11 @@ const StyledLogo = styled(Link, {
   width: "fit-content",
 });
 
-const Wrapper = styled("nav", {
-  background: "$primaryNavBg",
+const StyledImg = styled(Image, {
+  width: 30,
+  height: 30,
+  "@sm": {
+    width: 40,
+    height: 40,
+  },
 });

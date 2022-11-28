@@ -18,9 +18,11 @@ export const { styled, getCssText, keyframes, css, createTheme } =
       },
       colors: {
         primaryBg: "#eee",
+        neutral: "black",
         offprimaryBg: "#ccc",
         primaryNavBg: "white",
         primaryText: "#000",
+        reversePrimaryText: "#e3e3e4",
         success: "#06b800",
         transparentPrimary: "rgba(255,255,255,0.5)",
       },
@@ -67,6 +69,8 @@ export const darkTheme = createTheme({
     offprimaryBg: "#003c53",
     primaryNavBg: "#000f13",
     primaryText: "#e3e3e4",
+    reversePrimaryText: "#000",
+    neutral: "#eee",
     transparentPrimary: "rgba(0,0,0,0.15)",
   },
 });

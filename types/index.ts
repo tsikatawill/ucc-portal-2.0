@@ -14,11 +14,11 @@ export interface UserI {
   isAnonymous?: boolean;
   photoURL?: string;
   providerData: ProviderDataI[];
-  stsTokenManager: StsTokenManagerI;
-  createdAt: number;
-  lastLoginAt: number;
-  apiKey: string;
-  appName: any;
+  stsTokenManager?: StsTokenManagerI;
+  createdAt?: number;
+  lastLoginAt?: number;
+  apiKey?: string;
+  appName?: any;
 }
 
 export interface ProviderDataI {
@@ -34,4 +34,10 @@ export interface StsTokenManagerI {
   refreshToken: string;
   accessToken: string;
   expirationTime: number;
+}
+
+export interface DocUserI {
+  uid: string;
+  displayName: string;
+  email: string;
 }
